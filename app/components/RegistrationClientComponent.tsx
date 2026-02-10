@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Check, LucideLoader2, X } from 'lucide-react';
+
 import { AuthInput } from './ui/AuthInput';
 import { useRouter } from 'next/navigation';
 import { useFormik } from 'formik';
@@ -9,6 +9,9 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { registerUser } from '@/utils/action';
 import { FormData, MessageType } from '@/utils/type';
 import { fireConfetti } from '@/lib/confetti';
+import MessageToast from './ui/MessageToast';
+import PasswordRules from './ui/PasswordRules';
+import Button from './ui/Button';
 
 
 const RegistrationClientComponent = () => {
@@ -79,7 +82,7 @@ const RegistrationClientComponent = () => {
 
                 if (!response?.success) {
                     setMessage(response?.message ?? "Account creation failed");
-                    setMessage('error')
+                    setMessageType('error')
                     return;
                 } else {
                     setMessage(response.message || "Account created successfully, Check email for welcome message");
@@ -87,7 +90,7 @@ const RegistrationClientComponent = () => {
                     setSuccess(true)
                     fireConfetti()
                     setTimeout(() => {
-                        router.push("/sign-in");
+                        router.push("/log-in");
                     }, 5000)
                 }
             } catch (error) {
@@ -100,30 +103,6 @@ const RegistrationClientComponent = () => {
         }
 
     });
-
-    const password = formik.values.password;
-
-    const passwordRules = {
-        minLength: password.length >= 6,
-        uppercase: /[A-Z]/.test(password),
-        lowercase: /[a-z]/.test(password),
-        number: /\d/.test(password),
-        special: /[@$!%*?&]/.test(password),
-    };
-
-    const allRequiredRulesPass =
-        passwordRules.minLength &&
-        passwordRules.uppercase &&
-        passwordRules.lowercase &&
-        passwordRules.number &&
-        passwordRules.special;
-
-    const shouldShowRules =
-        passwordFocused && password.length > 0 && !allRequiredRulesPass;
-
-    const shouldShowStrength =
-        passwordFocused && password.length > 0 && allRequiredRulesPass;
-
 
     useEffect(() => {
         if (!message) return;
@@ -139,19 +118,10 @@ const RegistrationClientComponent = () => {
 
     return (
         <form onSubmit={formik.handleSubmit} className="space-y-5">
-            {message && (
-                <small
-                    className={`
-                     px-2 py-5 rounded text-sm font-medium inline-block
-             ${messageType === "success" &&
-                        "bg-green-100 text-green-700 border border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800"}
-             ${messageType === "error" &&
-                        "bg-red-100 text-red-700 border border-red-200 dark:bg-red-900/20 dark:text-red-400 dark:border-red-800"}
-                `}
-                >
-                    {message}
-                </small>
-            )}
+            <MessageToast
+                message={message}
+                messageType={messageType}
+            />
 
             <AuthInput
                 name='fullname'
@@ -167,7 +137,6 @@ const RegistrationClientComponent = () => {
                         : ''
                 }
             />
-
 
             <AuthInput
                 name='email'
@@ -209,29 +178,11 @@ const RegistrationClientComponent = () => {
                         : ''
                 }
             />
-            {shouldShowRules && (
-                <ul className="text-xs space-y-1 text-neutral-600">
-                    <li className={passwordRules.minLength ? "text-green-600 flex gap-1 items-center" : "flex gap-1 items-center"}>
-                        {passwordRules.minLength ? <Check size={18} /> : <X size={16} />} Minimum 6 characters
-                    </li>
-                    <li className={passwordRules.uppercase ? "text-green-600 flex gap-1 items-center" : "flex gap-1 items-center"}>
-                        {passwordRules.uppercase ? <Check size={18} /> : <X size={16} />} One uppercase letter
-                    </li>
-                    <li className={passwordRules.number ? "text-green-600 flex gap-1 items-center" : "flex gap-1 items-center"}>
-                        {passwordRules.number ? <Check size={18} /> : <X size={16} />} One number
-                    </li>
-                    <li className={passwordRules.special ? "text-green-600 flex gap-1 items-center" : "flex gap-1 items-center"}>
-                        {passwordRules.special ? <Check size={18} /> : <X size={16} />} One special character
-                    </li>
-                </ul>
-            )}
 
-            {shouldShowStrength && (
-                <small className="text-green-600 font-medium mb-3">
-                    ✔ Strong password
-                </small>
-            )}
-
+            <PasswordRules
+                passwordFocused={passwordFocused}
+                password={formik.values.password}
+            />
 
             <AuthInput
                 name='confirmpassword'
@@ -270,40 +221,13 @@ const RegistrationClientComponent = () => {
                 )}
             </div>
 
-            <button
-                disabled={loading || success}
-                type='submit'
-                className={`
-                 group w-full flex items-center justify-center space-x-3
-                 bg-black text-white py-4 font-black uppercase tracking-widest text-xs
-                 transition-all duration-300
-                 hover:bg-neutral-600
-                  ${loading || success ? 'cursor-not-allowed' : ''}
-                    ${success ? 'bg-green-600 hover:bg-green-600' : ''}
-                 ${loading ? 'bg-neutral-500 hover:bg-neutral-500' : ''}
-                 `}
-            >
-                {loading && (
-                    <span className="flex items-center space-x-2">
-                        <LucideLoader2 className="animate-spin" size={18} />
-                        <span>Creating account...</span>
-                    </span>
-                )}
-
-                {!loading && !success && (
-                    <div className='flex items-center gap-2'>
-                        <span>Create Account</span>
-                        <ArrowRight size={18} className='group-hover:translate-x-1 transform' />
-                    </div>
-                )}
-
-                {success && (
-                    <span className="flex items-center space-x-2">
-                        <Check size={20} />
-                        <span>Account Created</span>
-                    </span>
-                )}
-            </button>
+            <Button
+                loading={loading}
+                success={success}
+                name='Creating Account...'
+                title='Create an Account'
+                successTitle='Account Created'
+            />
         </form>
     );
 }

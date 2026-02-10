@@ -1,8 +1,10 @@
 'use server'
 import cloudinary from '@/lib/cloudinary';
 import dbConnect from '@/lib/dbconnect';
+import { encrypt } from '@/lib/session';
 import UserModel from '@/models/user';
 import * as bcrypt from 'bcrypt'
+import { cookies } from 'next/headers';
 
 export const registerUser = async (formData: {
     fullname: string;
@@ -78,3 +80,53 @@ export const registerUser = async (formData: {
         };
     }
 };
+
+export const signIn = async (formData: {
+    id: string,
+    email: string,
+    password: string
+}) => {
+    try {
+        await dbConnect()
+
+        const user = await UserModel.findOne({ email: formData.email }).select("+password")
+
+        if (!user) {
+            return {
+                success: false,
+                message: "Invalid Credentials"
+            }
+        }
+
+        const validPassword = await bcrypt.compare(formData.password, user.password)
+        if (!validPassword) {
+            return {
+                success: false,
+                message: "Invalid Credentials",
+            }
+        }
+
+        const cookieStore = await cookies()
+        const token = await encrypt({ _id: user._id.toString() })
+        cookieStore.set("token", token, {
+            httpOnly: true,
+            secure: true,
+            expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+            sameSite: "lax",
+            path: '/',
+        })
+
+
+        return {
+            success: true,
+            message: "Logged in successfully",
+        }
+
+    } catch (error) {
+        console.log("Error logging into account :", error);
+        return {
+            success: false,
+            message: "Internal server error"
+        }
+    }
+}
