@@ -1,9 +1,14 @@
 import React from 'react'
+import NavigationBar from './components/NavigationBar'
+import Hero from './components/Hero'
 
-const page = () => {
+const Page = () => {
   return (
-    <div>page</div>
+    <div>
+      <NavigationBar />
+      <Hero />
+    </div>
   )
 }
 
-export default page
+export default Page

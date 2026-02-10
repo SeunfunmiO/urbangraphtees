@@ -3,7 +3,6 @@ import React from 'react'
 const Loading = () => {
     return (
         <div className="min-h-screen bg-white">
-            {/* Header Skeleton */}
             <div className="border-b border-gray-200">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="h-16 flex items-center justify-between">
@@ -21,12 +20,9 @@ const Loading = () => {
                 </div>
             </div>
 
-            {/* Main Content Skeleton */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                {/* Hero/Banner Skeleton */}
                 <div className="h-96 bg-gray-200 rounded-lg mb-12 animate-pulse" />
 
-                {/* Product Grid Skeleton */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {[...Array(8)].map((_, i) => (
                         <div key={i} className="space-y-3">

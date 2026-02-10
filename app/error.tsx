@@ -12,14 +12,12 @@ const Error = ({
 }) => {
 
     useEffect(() => {
-        // Log the error to an error reporting service
         console.error(error);
     }, [error]);
 
     return (
-        <div className="min-h-screen bg-white flex items-center justify-center px-4">
+        <div className="min-h-screen bg-white flex items-center justify-center px-4 my-5">
             <div className="max-w-md w-full text-center">
-                {/* Error Icon */}
                 <div className="mb-8">
                     <div className="mx-auto w-24 h-24 bg-red-100 rounded-full flex items-center justify-center">
                         <svg
@@ -38,7 +36,6 @@ const Error = ({
                     </div>
                 </div>
 
-                {/* Message */}
                 <div className="space-y-4 mb-8">
                     <h2 className="text-3xl font-semibold text-gray-900">
                         Something Went Wrong
@@ -53,7 +50,6 @@ const Error = ({
                     )}
                 </div>
 
-                {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <button
                         onClick={reset}
@@ -69,7 +65,6 @@ const Error = ({
                     </Link>
                 </div>
 
-                {/* Support Info */}
                 <div className="mt-12 pt-8 border-t border-gray-200">
                     <p className="text-sm text-gray-600 mb-3">
                         Still having issues? We&apos;re here to help.
