@@ -44,7 +44,7 @@ export async function sendWelcomeEmail({
 
         <div class="content">
             <h2>YOU'RE IN THE CLUB.</h2>
-            <h3 style="margin: 0 0 20px; color: #ffffff; font-size: 24px; font-weight: bold;">Hi , ${fullname}! 👋</h3>
+            <h3 style="margin: 0 0 20px; color: #000000; font-size: 24px; font-weight: bold;">Hi , ${fullname}! 👋</h3>
             <p>Thanks for signing up! You’re now on the list for exclusive drops, early access to sales, and a whole lot of style inspiration.</p>
 
             <div class="promo-box">
