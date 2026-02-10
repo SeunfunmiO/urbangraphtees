@@ -6,7 +6,7 @@ const MessageToast = ({ message, messageType }: { message: string, messageType: 
             {message && (
                 <small
                     className={`
-                     px-2 py-5 rounded text-sm font-medium inline-block
+                     px-5 py-2 rounded text-sm font-medium inline-block mb-4
              ${messageType === "success" &&
                         "bg-green-100 text-green-700 border border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800"}
              ${messageType === "error" &&
