@@ -76,10 +76,18 @@ const SignInForm = () => {
             />
             <form onSubmit={formik.handleSubmit} className="space-y-5">
                 <AuthInput
+                    name='email'
                     label="Email Address"
                     type="email"
                     placeholder="DESIGNER@URBANGRAPH.COM"
-                    required
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    value={formik.values.email}
+                    error={
+                        formik.touched.email
+                            ? formik.errors.email
+                            : ''
+                    }
                 />
 
                 <div className="space-y-1">
