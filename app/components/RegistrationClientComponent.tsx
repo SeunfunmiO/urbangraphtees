@@ -43,33 +43,27 @@ const RegistrationClientComponent = () => {
         reader.readAsDataURL(file)
     }
 
-
     const formik = useFormik({
         initialValues: {
             fullname: "",
             email: "",
             password: "",
             confirmpassword: "",
-            image: '',
             agree: false,
         },
         validationSchema: yup.object({
             fullname: yup.string().required("Please enter your fullname"),
             email: yup.string().required("Email is required!").email("Please enter a valid email address"),
             password: yup.string().required("Password is required!"),
-                // .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%?&]{6,}$/,
-                //     'Password must contain at least 6 characters, one uppercase, one lowercase, one number, and one special character'),
             confirmpassword: yup.string().required("Please re-enter your password")
                 .oneOf([yup.ref("password")], "Passwords must match"),
             agree: yup.boolean().oneOf([true], "You must agree to continue"),
-            image: yup.string().notRequired()
         }),
         onSubmit: async (values: {
             fullname: string,
             email: string,
             password: string,
             confirmpassword: string,
-            image: string,
             agree: boolean
         }) => {
             const payload = {
@@ -94,7 +88,7 @@ const RegistrationClientComponent = () => {
                     fireConfetti()
                     setTimeout(() => {
                         router.push("/sign-in");
-                    }, 3000)
+                    }, 5000)
                 }
             } catch (error) {
                 console.log("Error creating account : ", error);
@@ -102,7 +96,6 @@ const RegistrationClientComponent = () => {
                 setMessageType('error')
             } finally {
                 setLoading(false);
-                setSuccess(false)
             }
         }
 
@@ -149,7 +142,7 @@ const RegistrationClientComponent = () => {
             {message && (
                 <small
                     className={`
-                     px-4 py-1 rounded text-sm font-medium inline-block
+                     px-2 py-5 rounded text-sm font-medium inline-block
              ${messageType === "success" &&
                         "bg-green-100 text-green-700 border border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800"}
              ${messageType === "error" &&
@@ -195,9 +188,7 @@ const RegistrationClientComponent = () => {
                 name='image'
                 label="Image"
                 type="file"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                value={formik.values.image}
+                onChange={handleFileChange}
             />
 
             <AuthInput

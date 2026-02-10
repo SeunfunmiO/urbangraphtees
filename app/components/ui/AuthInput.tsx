@@ -2,8 +2,8 @@ import { Asterisk } from "lucide-react";
 
 interface AuthInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label: string;
-    onChange: React.ChangeEventHandler<HTMLInputElement>
-    onBlur: React.ChangeEventHandler<HTMLInputElement>
+    onChange?: React.ChangeEventHandler<HTMLInputElement>
+    onBlur?: React.ChangeEventHandler<HTMLInputElement>
     error?: string
 }
 
