@@ -18,7 +18,6 @@ const SignInForm = () => {
     const [success, setSuccess] = useState(false)
     const [message, setMessage] = useState('')
     const [messageType, setMessageType] = useState<MessageType>("");
-    const [passwordFocused, setPasswordFocused] = useState(false);
 
     const formik = useFormik({
         initialValues: {
@@ -63,7 +62,6 @@ const SignInForm = () => {
                 setLoading(false);
             }
         }
-
     });
 
 
@@ -95,11 +93,7 @@ const SignInForm = () => {
                         label="Password"
                         type="password"
                         placeholder="••••••••"
-                        onFocus={() => setPasswordFocused(true)}
-                        onBlur={(e) => {
-                            setPasswordFocused(false);
-                            formik.handleBlur(e);
-                        }}
+                        onBlur={formik.handleBlur}
                         onChange={formik.handleChange}
                         value={formik.values.password}
                         error={
