@@ -7,7 +7,6 @@ interface IUser {
     email: string
     password: string
     role: string
-    agree: boolean
     profilePhoto:string
     lastLogin:Date
 }
@@ -32,10 +31,6 @@ const UserSchema = new Schema<IUser>({
         type: String,
         enum: ['user', 'admin', 'staff'],
         default: 'user'
-    },
-    agree: {
-        type: Boolean,
-        default: false
     },
     profilePhoto: String,
     lastLogin: {

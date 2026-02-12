@@ -1,11 +1,13 @@
+export type MessageType = "success" | "error" | "";
+
+export type StrengthType = 'weak' | 'medium' | 'strong'
+
 export interface jwtPayload {
     _id?: string
     iat?: number
     exp?: number
     success: boolean
 }
-
-export type MessageType = "success" | "error" | "";
 
 export interface FormData {
     image: string,
@@ -15,6 +17,7 @@ export interface FormData {
     password: string,
     agree: boolean
 }
+
 export interface ButtonProps {
     loading?: boolean,
     success?: boolean,

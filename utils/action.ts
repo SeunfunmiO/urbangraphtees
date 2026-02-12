@@ -10,7 +10,7 @@ export const registerUser = async (formData: {
     fullname: string;
     email: string;
     password: string;
-    profilephoto: string
+    profilePhoto: string
 }) => {
     try {
         await dbConnect();
@@ -19,8 +19,8 @@ export const registerUser = async (formData: {
         const hash = await bcrypt.hash(formData.password, salt);
         let uploadedImage;
 
-        if (formData.profilephoto) {
-            uploadedImage = await cloudinary.uploader.upload(formData.profilephoto, {
+        if (formData.profilePhoto) {
+            uploadedImage = await cloudinary.uploader.upload(formData.profilePhoto, {
                 folder: "urbangraphtees/pictures",
                 transformation: [
                     { width: 500, height: 500, crop: 'fill' }
@@ -54,7 +54,7 @@ export const registerUser = async (formData: {
             const user = await UserModel.create({
                 ...formData,
                 password: hash,
-                image: uploadedImage?.secure_url
+                profilePhoto: uploadedImage?.secure_url
             });
 
             if (!user) {
@@ -111,7 +111,7 @@ export const signIn = async (formData: {
         cookieStore.set("token", token, {
             httpOnly: true,
             secure: true,
-            expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+            expires: new Date(Date.now() + 14 * 24 * 60 * 60),
             sameSite: "lax",
             path: '/',
         })

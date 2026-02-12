@@ -7,7 +7,7 @@ import Image from 'next/image';
 const Page = () => {
     return (
         <div className="flex min-h-screen">
-            <div className="flex-1 flex flex-col justify-center px-6 sm:px-12 lg:px-20 bg-white my-6">
+            <div className="flex-1 flex flex-col justify-center px-6 sm:px-12 lg:px-20 bg-white my-2">
                 <div className="max-w-md w-full mx-auto">
                     <div className="mb-10">
                         <Link href="/" className="text-xl md:text-2xl font-black uppercase tracking-tighter">

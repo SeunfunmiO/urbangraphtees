@@ -30,7 +30,7 @@ const NavigationBar = () => {
                         <Link href="/collections" className="text-sm font-medium hover:text-neutral-600 transition">
                             COLLECTIONS
                         </Link>
-                        <Link href="/account" className="text-sm font-medium hover:text-neutral-600 transition">
+                        <Link href="/user/account" className="text-sm font-medium hover:text-neutral-600 transition">
                             MY ACCOUNT
                         </Link>
                     </div>
@@ -81,7 +81,7 @@ const NavigationBar = () => {
                         <Link href="/shop" className="block text-lg font-semibold px-2">Shop All</Link>
                         <Link href="/new-arrivals" className="block text-lg font-semibold px-2">New Arrivals</Link>
                         <Link href="/collections" className="block text-lg font-semibold px-2">Collections</Link>
-                        <Link href="/account" className="block text-lg font-semibold px-2">My Account</Link>
+                        <Link href="/user/account" className="block text-lg font-semibold px-2">My Account</Link>
                         <Link href="/log-in" className="block text-lg font-semibold px-2">Log In</Link>
                         <Link href="/create-account" className="block text-lg font-semibold px-2">Create an Account</Link>
                     </div>

@@ -73,7 +73,7 @@ const RegistrationClientComponent = () => {
                 fullname: values.fullname,
                 email: values.email,
                 password: values.password,
-                profilephoto: formData.image
+                profilePhoto: formData.image
             }
             try {
                 setLoading(true);

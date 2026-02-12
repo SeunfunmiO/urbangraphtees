@@ -17,5 +17,5 @@ export default async function proxy(req: NextRequest) {
 
 //config
 export const config: ProxyConfig = {
-    matcher: ['/admin', '/staff', '/rider', '/user']
+    matcher: ['/admin', '/staff', '/user']
 }

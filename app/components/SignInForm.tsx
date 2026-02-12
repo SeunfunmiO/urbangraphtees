@@ -10,7 +10,6 @@ import { signIn } from '@/utils/action';
 import { useRouter } from 'next/navigation';
 import { MessageType } from '@/utils/type';
 import MessageToast from './ui/MessageToast';
-import PasswordRules from './ui/PasswordRules';
 import Button from './ui/Button';
 
 const SignInForm = () => {
@@ -53,7 +52,7 @@ const SignInForm = () => {
                     setMessageType('success')
                     setSuccess(true)
                     setTimeout(() => {
-                        router.push("/account");
+                        router.push("/user/account");
                     }, 3000)
                 }
             } catch (error) {
@@ -108,11 +107,6 @@ const SignInForm = () => {
                                 ? formik.errors.password
                                 : ''
                         }
-                    />
-
-                    <PasswordRules
-                        passwordFocused={passwordFocused}
-                        password={formik.values.password}
                     />
 
                     <div className="flex justify-end">
