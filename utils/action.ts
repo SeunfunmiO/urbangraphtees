@@ -5,6 +5,9 @@ import { encrypt } from '@/lib/session';
 import UserModel from '@/models/user';
 import * as bcrypt from 'bcrypt'
 import { cookies } from 'next/headers';
+import crypto from 'crypto'
+import { sendResetEmail } from '@/lib/emailReset';
+
 
 export const registerUser = async (formData: {
     fullname: string;
@@ -128,5 +131,129 @@ export const signIn = async (formData: {
             success: false,
             message: "Internal server error"
         }
+    }
+}
+
+export const forgotPassword = async (data: { email: string }) => {
+    try {
+        const email = (data.email).toLowerCase()
+
+        if (!email) {
+            return { success: false, message: "Email is required" }
+        }
+
+        await dbConnect()
+
+        const user = await UserModel.findOne({ email })
+
+        if (!user) {
+            return {
+                success: true,
+                message:
+                    "If an account with that email exists, we’ve sent a reset link."
+            }
+        }
+
+        const now = new Date()
+        const windowTime = 15 * 60 * 1000
+
+        user.passwordResetRequests = user.passwordResetRequests.filter(
+            (timestamp: Date) => now.getTime() - timestamp.getTime() < windowTime
+        )
+
+        if (user.passwordResetRequests.length >= 3) {
+            return {
+                success: false,
+                message: "Too many reset attempts. Please try again later."
+            }
+        }
+
+        user.passwordResetRequests.push(now)
+        await user.save()
+
+
+        const resetToken = crypto.randomBytes(32).toString("hex")
+
+
+        const hashedToken = crypto
+            .createHash("sha256")
+            .update(resetToken)
+            .digest("hex")
+
+        user.resetPasswordToken = hashedToken
+        user.resetPasswordExpires = Date.now() + 15 * 60 * 1000
+        await user.save()
+
+        try {
+            const resetUrl = `${process.env.NEXT_PUBLIC_APP_URL}/reset-password/${resetToken}`
+
+            await sendResetEmail(user.email, resetUrl)
+
+        } catch (emailError) {
+            console.error("Email failed:", emailError)
+
+            user.resetPasswordToken = undefined
+            user.resetPasswordExpires = undefined
+            await user.save()
+
+            return {
+                success: false,
+                message: "Could not send reset email. Please try again."
+            }
+        }
+
+        return {
+            success: true,
+            message:
+                "If an account with that email exists, we’ve sent a reset link."
+        }
+
+    } catch (error) {
+        console.error("Forgot Password Error:", error)
+        return {
+            success: false,
+            message: "Something went wrong. Please try again."
+        }
+    }
+}
+
+export const resetPassword = async (data: {
+    token: string,
+    newPassword: string
+}) => {
+    try {
+        const { token, newPassword } = data
+
+        if (!token || !newPassword) {
+            return { success: false, message: "Token and new password are required" }
+        }
+
+        await dbConnect()
+
+        const hashedToken = crypto.createHash("sha256").update(token).digest("hex")
+
+        const user = await UserModel.findOne({
+            resetPasswordToken: hashedToken,
+            resetPasswordExpires: { $gt: Date.now() },
+        })
+
+        if (!user) {
+            return { success: false, message: "Invalid or expired token" }
+        }
+
+        const hashedPassword = await bcrypt.hash(newPassword, 10)
+
+        user.password = hashedPassword
+        user.resetPasswordToken = undefined
+        user.resetPasswordExpires = undefined
+
+        user.passwordResetRequests = []
+
+        await user.save()
+
+        return { success: true, message: "Password reset successfully" }
+    } catch (error) {
+        console.error("Reset Password Error:", error)
+        return { success: false, message: "Something went wrong. Please try again." }
     }
 }

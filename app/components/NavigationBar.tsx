@@ -39,13 +39,15 @@ const NavigationBar = () => {
                         <button className="text-gray-700 hover:text-black transition">
                             <Search size={20} />
                         </button>
-                        <Link href="/cart" className="text-gray-700 hover:text-black transition relative">
+                        <button
+                            onClick={() => router.push('/cart')}
+                            className="text-gray-700 hover:text-black transition relative">
                             <ShoppingBag size={20} />
                             <span className="absolute -top-2 -right-2 bg-black text-white text-[10px] w-4 h-4 rounded-full 
                                 flex items-center justify-center font-bold">
                                 0
                             </span>
-                        </Link>
+                        </button>
 
                         <div className="hidden md:flex items-center space-x-4">
                             <button
@@ -81,9 +83,21 @@ const NavigationBar = () => {
                         <Link href="/shop" className="block text-lg font-semibold px-2">Shop All</Link>
                         <Link href="/new-arrivals" className="block text-lg font-semibold px-2">New Arrivals</Link>
                         <Link href="/collections" className="block text-lg font-semibold px-2">Collections</Link>
-                        <Link href="/user/account" className="block text-lg font-semibold px-2">My Account</Link>
-                        <Link href="/log-in" className="block text-lg font-semibold px-2">Log In</Link>
-                        <Link href="/create-account" className="block text-lg font-semibold px-2">Create an Account</Link>
+                        <button
+                            onClick={() => router.push("/user/account")}
+                            className="block text-lg font-semibold px-2">
+                            My Account
+                        </button>
+                        <button
+                            onClick={() => router.push("/log-in")}
+                            className="block text-lg font-semibold px-2">
+                            Log In
+                        </button>
+                        <button
+                            onClick={() => ("/create-account")}
+                            className="block text-lg font-semibold px-2">
+                            Create an Account
+                        </button>
                     </div>
                 </div>
             )}

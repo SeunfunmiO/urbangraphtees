@@ -25,3 +25,16 @@ export interface ButtonProps {
     title: string,
     successTitle?: string
 }
+
+export interface WelcomeEmailProps {
+    fullname: string,
+    email: string,
+    websiteName?: string;
+    websiteUrl?: string;
+}
+
+export interface ResetPasswordProps{
+    resetUrl: string,
+    email?: string,
+    websiteName?: string;
+}

@@ -7,8 +7,11 @@ interface IUser {
     email: string
     password: string
     role: string
-    profilePhoto:string
-    lastLogin:Date
+    profilePhoto: string
+    resetPasswordToken: string
+    resetPasswordExpires: Date
+    passwordResetRequests:[Date]
+    lastLogin: Date
 }
 
 
@@ -27,12 +30,18 @@ const UserSchema = new Schema<IUser>({
         required: true,
         select: false
     },
+    profilePhoto: String,
     role: {
         type: String,
         enum: ['user', 'admin', 'staff'],
         default: 'user'
     },
-    profilePhoto: String,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
+    passwordResetRequests: {
+        type: [Date],
+        default: [],
+    },
     lastLogin: {
         type: Date,
         default: null
