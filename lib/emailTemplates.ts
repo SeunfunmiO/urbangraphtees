@@ -66,53 +66,52 @@ export async function sendWelcomeEmail({
 };
 
 export function getResetEmailTemplate({
-    websiteName = 'Urbangraphtees',
+    websiteName = "Urbangraphtees",
     resetUrl,
 }: ResetPasswordProps) {
     return `
 <!DOCTYPE html>
-    <html lang="en">
-        <head>
-        <meta charset="UTF-8">
-        <title>Reset Password</title>
-            <meta name="viewport" content = "width=device-width, initial-scale=1.0">
-                <style>
-                body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: #f9f9f9; }
-        .wrapper { width: 100 %; table-layout: fixed; background-color: #f9f9f9; padding-bottom: 40px; }
-        .main { background-color: #ffffff; max - width: 500px; margin: 40px auto; border-radius: 8px; border: 1px solid #eeeeee; overflow: hidden; }
-        .header { background-color: #000000; padding: 30px; text-align: center; }
-        .content { padding: 40px; text-align: center; color: #333333; line-height: 1.6; }
-        .button { display: inline-block; padding: 14px 28px; background-color: #000000; color: #ffffff!important; text-decoration: none; font-weight: bold; border-radius: 4px; margin: 25px 0; }
-        .footer { text-align: center; font-size: 12px; color: #999999; padding: 20px; }
-        .warning { font-size: 13px; color: #777777; border-top: 1px solid #eeeeee; padding-top: 20px; margin-top: 20px; }
-</style>
-    </head>
-    <body>
-    <div class="wrapper">
-        <div class="main">
-            <div class="header">
-                <h1 style="color: #ffffff; margin: 0; letter-spacing: 2px; font-size: 20px; text-transform: uppercase;" > ${websiteName} </h1>
-                    </div>
-                    <div class="content">
-                        <h2 style="margin-top: 0;"> Reset Your Password </h2>
-                            <p> We received a request to reset the password for your account.No worries, it happens to the best of us! </p>
+<html>
+<body style="margin:0;padding:0;background-color:#f9f9f9;font-family:Helvetica,Arial,sans-serif;">
 
-                                <a href=${resetUrl} class="button"> RESET MY PASSWORD </a>
+  <div style="max-width:500px;margin:40px auto;background:#ffffff;border-radius:8px;border:1px solid #eeeeee;overflow:hidden;">
 
-                                    <p> This link will expire in <strong>15 minutes </strong> for security reasons.</p>
-
-                                        <div class="warning">
-                                            <p>If you didn't request this, you can safely ignore this email. Your password will remain unchanged.</p>
-                                        </div>
-                    </div>
-             </div>
-              <div class="footer">
-                                                    <p>& copy; ${new Date().getFullYear()} ${websiteName}. Stay stylish.</p>
-                                                   
-
-        </div>
+    <div style="background:#000000;padding:30px;text-align:center;">
+      <h1 style="color:#ffffff;margin:0;font-size:20px;letter-spacing:2px;text-transform:uppercase;">
+        ${websiteName}
+      </h1>
     </div>
-  </body>
-  </html>
-  `.trim()
+
+    <div style="padding:40px;text-align:center;color:#333;line-height:1.6;">
+      <h2 style="margin-top:0;">Reset Your Password</h2>
+
+      <p>
+        We received a request to reset the password for your account.
+        No worries, it happens to the best of us!
+      </p>
+
+      <a href="${resetUrl}"
+         style="display:inline-block;padding:14px 28px;background:#000000;color:#ffffff;text-decoration:none;font-weight:bold;border-radius:4px;margin:25px 0;">
+         RESET MY PASSWORD
+      </a>
+
+      <p>
+        This link will expire in <strong>15 minutes</strong> for security reasons.
+      </p>
+
+      <p style="font-size:13px;color:#777;border-top:1px solid #eeeeee;padding-top:20px;margin-top:20px;">
+        If you didn’t request this, you can safely ignore this email.
+        Your password will remain unchanged.
+      </p>
+    </div>
+
+    <div style="text-align:center;font-size:12px;color:#999;padding:20px;">
+      &copy; ${new Date().getFullYear()} ${websiteName}. Stay stylish.
+    </div>
+
+  </div>
+
+</body>
+</html>
+  `.trim();
 }
