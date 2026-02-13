@@ -38,3 +38,9 @@ export interface ResetPasswordProps{
     email?: string,
     websiteName?: string;
 }
+
+export interface ParamsProps {
+    params:{
+        token:string
+    }
+}

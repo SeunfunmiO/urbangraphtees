@@ -83,7 +83,7 @@ export function getResetEmailTemplate({
 </head>
 <body style="margin:0;padding:0;background-color:#f9f9f9;font-family:Helvetica,Arial,sans-serif;">
 
-  <div style="max-width:500px;margin:40px auto;background:#ffffff;border-radius:8px;border:1px solid #eeeeee;overflow:hidden;">
+  <div style="max-width:500px;margin:0px auto 40px;background:#ffffff;border-radius:8px;border:1px solid #eeeeee;overflow:hidden;">
 
     <div style="background:#000000;padding:30px;text-align:center;">
       <h1 style="color:#ffffff;margin:0;font-size:20px;letter-spacing:2px;text-transform:uppercase;">

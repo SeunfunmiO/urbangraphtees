@@ -12,18 +12,14 @@ import PasswordRules from './ui/PasswordRules';
 import Button from './ui/Button';
 import MessageToast from './ui/MessageToast';
 import { resetPassword } from '@/utils/action';
-import { useSearchParams } from 'next/navigation';
 
-const ResetPassword = () => {
+const ResetPassword = ({ token }: { token: string }) => {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState(false)
     const [message, setMessage] = useState('')
     const [messageType, setMessageType] = useState<MessageType>("");
     const [passwordFocused, setPasswordFocused] = useState(false);
-    const searchParams = useSearchParams();
-    const token = searchParams.get("token") || "";
-
 
     const formik = useFormik({
         initialValues: {

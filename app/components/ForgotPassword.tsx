@@ -1,7 +1,7 @@
 'use client'
 
 import { useFormik } from 'formik'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as yup from 'yup'
 import { AuthInput } from './ui/AuthInput'
 import Button from './ui/Button'
@@ -10,7 +10,6 @@ import MessageToast from './ui/MessageToast'
 import { MessageType } from '@/utils/type'
 import { forgotPassword } from '@/utils/action'
 import { ArrowLeft } from 'lucide-react'
-import Link from 'next/link'
 
 const ForgotPassword = () => {
     const router = useRouter()
@@ -51,6 +50,17 @@ const ForgotPassword = () => {
             }
         }
     })
+
+      useEffect(() => {
+            if (!message) return;
+    
+            const timer = setTimeout(() => {
+                setMessage('')
+                setMessageType('')
+            }, 3000)
+    
+            return () => clearTimeout(timer)
+        }, [message])
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
