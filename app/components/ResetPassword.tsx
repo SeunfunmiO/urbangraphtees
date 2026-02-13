@@ -27,11 +27,11 @@ const ResetPassword = () => {
 
     const formik = useFormik({
         initialValues: {
-          newPassword: "",
+            newPassword: "",
             confirmpassword: "",
         },
         validationSchema: yup.object({
-          newPassword: yup.string().required("Password is required!"),
+            newPassword: yup.string().required("Password is required!"),
             confirmpassword: yup.string().required("Please re-enter your password")
                 .oneOf([yup.ref("newPassword")], "Passwords must match"),
         }),
@@ -41,7 +41,7 @@ const ResetPassword = () => {
         }) => {
             const payload = {
                 token,
-              newPassword: values.newPassword,
+                newPassword: values.newPassword,
             }
             try {
                 setLoading(true);
@@ -93,7 +93,7 @@ const ResetPassword = () => {
                     </div>
                     <h2 className="text-2xl font-bold text-gray-900">Set new password</h2>
                     <p className="mt-2 text-sm text-gray-600">
-                        Must be at least 8 characters long.
+                        Must be at least 6 characters long.
                     </p>
                 </div>
 
@@ -107,7 +107,7 @@ const ResetPassword = () => {
 
                         <div className="mt-1 ">
                             <AuthInput
-                                name='newpassword'
+                                name='newPassword'
                                 label="New Password"
                                 type="password"
                                 placeholder="••••••••"
@@ -126,27 +126,25 @@ const ResetPassword = () => {
                             />
 
                             <PasswordRules
-                              passwordFocused={passwordFocused}
-                              password={formik.values.newPassword}
+                                passwordFocused={passwordFocused}
+                                password={formik.values.newPassword}
                             />
                         </div>
 
-                        <div>
-                            <AuthInput
-                                name='confirmpassword'
-                                label="Confirm Password"
-                                type="password"
-                                placeholder="••••••••"
-                                onBlur={formik.handleBlur}
-                                onChange={formik.handleChange}
-                                value={formik.values.confirmpassword}
-                                error={
-                                    formik.touched.confirmpassword
-                                        ? formik.errors.confirmpassword
-                                        : ''
-                                }
-                            />
-                        </div>
+                        <AuthInput
+                            name='confirmpassword'
+                            label="Confirm Password"
+                            type="password"
+                            placeholder="••••••••"
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            value={formik.values.confirmpassword}
+                            error={
+                                formik.touched.confirmpassword
+                                    ? formik.errors.confirmpassword
+                                    : ''
+                            }
+                        />
                     </div>
 
                     <Button
@@ -157,13 +155,13 @@ const ResetPassword = () => {
                         successTitle='Updated'
                     />
                 </form>
-                    <div className="text-center">
-                        <button
-                            onClick={() => router.push("/log-in")}
-                             className="inline-flex items-center text-sm font-medium text-neutral-600 hover:text-neutral-500">
-                            <ArrowLeft size={16} className="mr-2" /> Back to login
-                        </button>
-                    </div>
+                <div className="text-center">
+                    <button
+                        onClick={() => router.push("/log-in")}
+                        className="inline-flex items-center text-sm font-medium text-neutral-600 hover:text-neutral-500">
+                        <ArrowLeft size={16} className="mr-2" /> Back to login
+                    </button>
+                </div>
             </div>
         </div>
     );

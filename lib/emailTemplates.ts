@@ -1,6 +1,10 @@
 import { ResetPasswordProps, WelcomeEmailProps } from "@/utils/type";
 
-
+// <div style="background:#000000;padding:30px;text-align:center;" >
+//   <h1 style="color:#ffffff;margin:0;font-size:20px;letter-spacing:2px;text-transform:uppercase;" >
+//     ${ websiteName }
+// </h1>
+//   </div>
 // <h1 style="margin: 0; letter-spacing: 4px; text-transform: uppercase;" > Welcome to ${ websiteName } !</h1>
 
 export async function sendWelcomeEmail({
@@ -72,6 +76,11 @@ export function getResetEmailTemplate({
     return `
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content='light only'>
+<meta name="supported-color-scheme" content='light only'>
+</head>
 <body style="margin:0;padding:0;background-color:#f9f9f9;font-family:Helvetica,Arial,sans-serif;">
 
   <div style="max-width:500px;margin:40px auto;background:#ffffff;border-radius:8px;border:1px solid #eeeeee;overflow:hidden;">
