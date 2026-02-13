@@ -14,7 +14,7 @@ const Button = ({ loading, success, name, title, successTitle }:ButtonProps) => 
                  group w-full flex items-center justify-center space-x-3
                  bg-black text-white py-4 font-black uppercase tracking-widest text-xs
                  transition-all duration-300
-                 hover:bg-neutral-600
+                 hover:bg-neutral-600 rounded
                   ${loading || success ? 'cursor-not-allowed' : ''}
                     ${success ? 'bg-green-600 hover:bg-green-600' : ''}
                  ${loading ? 'bg-neutral-500 hover:bg-neutral-500' : ''}

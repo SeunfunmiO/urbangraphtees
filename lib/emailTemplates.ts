@@ -70,12 +70,12 @@ export function getResetEmailTemplate({
     resetUrl,
 }: ResetPasswordProps) {
     return `
-
-<!DOCTYPE html >
-    <html lang="en" >
+<!DOCTYPE html>
+    <html lang="en">
         <head>
-        <meta charset="UTF-8" >
-            <meta name="viewport" content = "width=device-width, initial-scale=1.0" >
+        <meta charset="UTF-8">
+        <title>Reset Password</title>
+            <meta name="viewport" content = "width=device-width, initial-scale=1.0">
                 <style>
                 body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: #f9f9f9; }
         .wrapper { width: 100 %; table-layout: fixed; background-color: #f9f9f9; padding-bottom: 40px; }
@@ -87,30 +87,32 @@ export function getResetEmailTemplate({
         .warning { font-size: 13px; color: #777777; border-top: 1px solid #eeeeee; padding-top: 20px; margin-top: 20px; }
 </style>
     </head>
-    < body >
-    <div class="wrapper" >
-        <div class="main" >
-            <div class="header" >
+    <body>
+    <div class="wrapper">
+        <div class="main">
+            <div class="header">
                 <h1 style="color: #ffffff; margin: 0; letter-spacing: 2px; font-size: 20px; text-transform: uppercase;" > ${websiteName} </h1>
                     </div>
-                    < div class="content" >
-                        <h2 style="margin-top: 0;" > Reset Your Password </h2>
-                            < p > We received a request to reset the password for your account.No worries, it happens to the best of us! </p>
+                    <div class="content">
+                        <h2 style="margin-top: 0;"> Reset Your Password </h2>
+                            <p> We received a request to reset the password for your account.No worries, it happens to the best of us! </p>
 
-                                < a href=${resetUrl} class="button" > RESET MY PASSWORD </a>
+                                <a href=${resetUrl} class="button"> RESET MY PASSWORD </a>
 
-                                    < p > This link will expire in <strong>15 minutes < /strong> for security reasons.</p >
+                                    <p> This link will expire in <strong>15 minutes </strong> for security reasons.</p>
 
-                                        <div class="warning" >
+                                        <div class="warning">
                                             <p>If you didn't request this, you can safely ignore this email. Your password will remain unchanged.</p>
-                                                </div>
-                                                </div>
-                                                </div>
-                                                < div class="footer" >
+                                        </div>
+                    </div>
+             </div>
+              <div class="footer">
                                                     <p>& copy; ${new Date().getFullYear()} ${websiteName}. Stay stylish.</p>
-                                                        </div>
-                                                        </div>
-                                                        </body>
-                                                        </html>
-                                                        `.trim()
+                                                   
+
+        </div>
+    </div>
+  </body>
+  </html>
+  `.trim()
 }
