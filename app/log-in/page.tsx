@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import SignInForm from '../components/SignInForm';
 import Image from 'next/image';
+import AuthOptions from '../components/AuthOptions';
 
 
 const Page = () => {
@@ -32,14 +33,7 @@ const Page = () => {
                         <div className="grow border-t border-gray-100"></div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
-                        <button
-                            className="py-3 border border-gray-200 font-bold text-xs 
-                        uppercase tracking-widest hover:bg-gray-50 transition">Google</button>
-                        <button
-                            className="py-3 border border-gray-200 font-bold text-xs 
-                        uppercase tracking-widest hover:bg-gray-50 transition">Apple ID</button>
-                    </div>
+                    <AuthOptions/>
                 </div>
             </div>
 

@@ -111,13 +111,6 @@ const SignInForm = () => {
                     </div>
                 </div>
 
-                <div className="flex items-center space-x-2 py-2">
-                    <input type="checkbox" id="remember" className="w-4 h-4 accent-black border-gray-300 rounded-none" />
-                    <label htmlFor="remember" className="text-xs font-bold uppercase text-gray-600 tracking-tight cursor-pointer">
-                        Keep me logged in
-                    </label>
-                </div>
-
                 <Button
                     loading={loading}
                     success={success}
