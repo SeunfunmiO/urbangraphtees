@@ -3,10 +3,10 @@ import { model, models, Schema } from "mongoose"
 
 
 interface IUser {
-    name: string
-    fullname: string
+    name?: string
+    fullname?: string
     email: string
-    password: string
+    password?: string
     role: string
     profilePhoto: string
     provider: string

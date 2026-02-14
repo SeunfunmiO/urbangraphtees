@@ -24,9 +24,8 @@ const handler = NextAuth({
                 await UserModel.create({
                     name: user.name,
                     email: user.email,
-                    image: user.image,
+                   profilePhoto: user.image,
                     provider: "google",
-                    createdAt: new Date(),
                 })
             }
 
