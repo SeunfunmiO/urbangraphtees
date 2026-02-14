@@ -10,12 +10,16 @@ const handler = NextAuth({
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
         }),
     ],
+    secret: process.env.NEXTAUTH_SECRET,
+    session: {
+        strategy: "jwt",
+    },
     callbacks: {
         async signIn({ user }) {
             await dbConnect()
 
             const existingUser = await UserModel.findOne({ email: user.email })
-           
+
             if (!existingUser) {
                 await UserModel.create({
                     name: user.name,
@@ -27,6 +31,17 @@ const handler = NextAuth({
             }
 
             return true
+        },
+    },
+    cookies: {
+        sessionToken: {
+            name: `__Secure-next-auth.session-token`,
+            options: {
+                httpOnly: true,
+                sameSite: "lax",
+                path: "/",
+                secure: process.env.NODE_ENV === "production",
+            },
         },
     },
 })

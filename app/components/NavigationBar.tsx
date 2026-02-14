@@ -1,13 +1,22 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ShoppingBag, Search, Menu, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+// import { verifyUser } from '@/lib/session';
 
 const NavigationBar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const router = useRouter()
+
+    // useEffect(() => {
+    //     const getUser = async () => {
+    //         await verifyUser()
+            
+    //     }
+    //     getUser()
+    // })
 
     return (
         <nav className="sticky top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">

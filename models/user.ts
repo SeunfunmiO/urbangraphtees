@@ -3,29 +3,34 @@ import { model, models, Schema } from "mongoose"
 
 
 interface IUser {
+    name: string
     fullname: string
     email: string
     password: string
     role: string
     profilePhoto: string
+    provider: string
     resetPasswordToken: string
     resetPasswordExpires: Date
-    passwordResetRequests:[Date]
+    passwordResetRequests: [Date]
     lastLogin: Date
 }
 
 
 const UserSchema = new Schema<IUser>({
+    name: { type: String },
     fullname: {
         type: String,
+        required: false
     },
     email: {
         type: String,
         unique: true,
-        required:true
+        required: true
     },
     password: {
         type: String,
+        required: false,
         select: false
     },
     profilePhoto: String,
@@ -33,6 +38,10 @@ const UserSchema = new Schema<IUser>({
         type: String,
         enum: ['user', 'admin', 'staff'],
         default: 'user'
+    },
+    provider: {
+        type: String,
+        default: "credentials",
     },
     resetPasswordToken: String,
     resetPasswordExpires: Date,
