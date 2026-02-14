@@ -18,16 +18,14 @@ interface IUser {
 const UserSchema = new Schema<IUser>({
     fullname: {
         type: String,
-        required: true
     },
     email: {
         type: String,
         unique: true,
-        required: true
+        required:true
     },
     password: {
         type: String,
-        required: true,
         select: false
     },
     profilePhoto: String,
