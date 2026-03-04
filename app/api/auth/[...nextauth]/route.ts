@@ -1,4 +1,4 @@
-import dbConnect from "@/lib/db/dbconnect"
+import dbConnect from "@/lib/db/connectDb"
 import UserModel from "@/lib/db/models/user"
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"

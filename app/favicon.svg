@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Background square with cut corner -->
+  <path d="M0 0 L48 0 L64 16 L64 64 L16 64 L0 48 Z" fill="#111111"/>
+
+  <!-- U mark -->
+  <path d="M8 10 L8 40 Q8 50 18 50 L28 50 Q38 50 38 40 L38 34 L32 34 L32 40 Q32 44 28 44 L18 44 Q14 44 14 40 L14 10 Z" fill="#AAFF00"/>
+
+  <!-- G mark -->
+  <path d="M42 10 L42 50 L60 50 L60 32 L52 32 L52 38 L54 38 L54 44 L48 44 L48 16 L54 16 L54 22 L52 22 L52 28 L60 28 L60 10 Z" fill="#F5F5F0"/>
+
+  <!-- Corner accent line -->
+  <path d="M48 0 L64 16" stroke="#AAFF00" stroke-width="2" opacity="0.6"/>
+</svg>

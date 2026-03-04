@@ -1,7 +1,7 @@
 import { jwtVerify, SignJWT } from "jose";
 import "server-only"
 import { cookies } from "next/headers";
-import dbConnect from "./db/dbconnect";
+import dbConnect from "./db/connectDb";
 import { jwtPayload } from "@/lib/db/utils/type";
 import UserModel from "@/lib/db/models/user";
 

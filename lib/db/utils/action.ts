@@ -1,6 +1,6 @@
 'use server'
 import cloudinary from '@/lib/cloudinary';
-import dbConnect from '@/lib/db/dbconnect';
+import dbConnect from '@/lib/db/connectDb';
 import { encrypt } from '@/lib/session';
 import UserModel from '@/lib/db/models/user';
 import * as bcrypt from 'bcrypt'

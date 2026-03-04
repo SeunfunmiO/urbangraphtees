@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" fill="none">
+  <!-- Icon mark: stylized "UG" with angular street aesthetic -->
+  <g>
+    <!-- Left bracket / U shape -->
+    <path d="M8 8 L8 52 Q8 64 20 64 L36 64 Q48 64 48 52 L48 44 L40 44 L40 52 Q40 56 36 56 L20 56 Q16 56 16 52 L16 8 Z" fill="#AAFF00"/>
+    <!-- Right bracket / G shape -->
+    <path d="M56 8 L56 64 L88 64 L88 40 L72 40 L72 48 L80 48 L80 56 L64 56 L64 16 L80 16 L80 24 L72 24 L72 32 L88 32 L88 8 Z" fill="#F5F5F0"/>
+    <!-- Accent slash -->
+    <path d="M92 8 L100 8 L60 64 L52 64 Z" fill="#AAFF00" opacity="0.6"/>
+  </g>
+
+  <!-- Wordmark: URBANGRAPH -->
+  <g fill="#F5F5F0" font-family="'Barlow Condensed', sans-serif">
+    <!-- URBAN -->
+    <text x="110" y="36"
+      font-size="26"
+      font-weight="800"
+      letter-spacing="4"
+      fill="#F5F5F0"
+      font-family="Arial Black, sans-serif"
+    >URBAN</text>
+
+    <!-- GRAPH in acid green -->
+    <text x="110" y="62"
+      font-size="26"
+      font-weight="800"
+      letter-spacing="4"
+      fill="#AAFF00"
+      font-family="Arial Black, sans-serif"
+    >GRAPH</text>
+
+    <!-- TEES — smaller, condensed -->
+    <text x="220" y="62"
+      font-size="14"
+      font-weight="700"
+      letter-spacing="6"
+      fill="#F5F5F0"
+      opacity="0.7"
+      font-family="Arial, sans-serif"
+    >TEES</text>
+  </g>
+
+  <!-- Underline accent -->
+  <rect x="110" y="67" width="160" height="2" fill="#AAFF00" opacity="0.4"/>
+</svg>
