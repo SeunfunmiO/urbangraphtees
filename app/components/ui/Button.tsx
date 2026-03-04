@@ -1,10 +1,10 @@
 'use client'
 
-import { ButtonProps } from '@/utils/type'
+import { ButtonProps } from '@/lib/db/utils/type'
 import { ArrowRight, Check, LucideLoader2 } from 'lucide-react'
 import React from 'react'
 
-const Button = ({ loading, success, name, title, successTitle }:ButtonProps) => {
+const Button = ({ loading, success, name, title, successTitle }: ButtonProps) => {
     return (
         <div>
             <button

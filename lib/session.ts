@@ -1,9 +1,9 @@
 import { jwtVerify, SignJWT } from "jose";
 import "server-only"
 import { cookies } from "next/headers";
-import dbConnect from "./dbconnect";
-import { jwtPayload } from "@/utils/type";
-import UserModel from "@/models/user";
+import dbConnect from "./db/dbconnect";
+import { jwtPayload } from "@/lib/db/utils/type";
+import UserModel from "@/lib/db/models/user";
 
 
 const encodedKey = new TextEncoder().encode(process.env.JWT_SECRET);

@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation';
 import { useFormik } from 'formik';
 import * as yup from 'yup'
 import { ChangeEvent, useEffect, useState } from 'react';
-import { registerUser } from '@/utils/action';
-import { FormData, MessageType } from '@/utils/type';
+import { registerUser } from '@/lib/db/utils/action';
+import { FormData, MessageType } from '@/lib/db/utils/type';
 import { fireConfetti } from '@/lib/confetti';
 import MessageToast from './ui/MessageToast';
 import PasswordRules from './ui/PasswordRules';

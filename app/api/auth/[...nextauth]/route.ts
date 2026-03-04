@@ -1,5 +1,5 @@
-import dbConnect from "@/lib/dbconnect"
-import UserModel from "@/models/user"
+import dbConnect from "@/lib/db/dbconnect"
+import UserModel from "@/lib/db/models/user"
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 
@@ -24,7 +24,7 @@ const handler = NextAuth({
                 await UserModel.create({
                     name: user.name,
                     email: user.email,
-                   profilePhoto: user.image,
+                    profilePhoto: user.image,
                     provider: "google",
                 })
             }

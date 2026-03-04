@@ -1,13 +1,13 @@
 import ResetPassword from '@/app/components/ResetPassword'
-import { ParamsProps } from '@/utils/type'
+import { ParamsProps } from '@/lib/db/utils/type'
 import React from 'react'
 
 
-const Page = ({params}:ParamsProps) => {
- 
+const Page = ({ params }: ParamsProps) => {
+
   return (
     <div>
-      <ResetPassword token={params.token}/>
+      <ResetPassword token={params.token} />
     </div>
   )
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { StrengthType } from '@/utils/type';
+import { StrengthType } from '@/lib/db/utils/type';
 import { AlertCircle, Check, CheckCircle, MinusCircle, X } from 'lucide-react';
 import React from 'react'
 

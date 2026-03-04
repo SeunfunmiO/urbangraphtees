@@ -5,13 +5,13 @@ import { LockKeyhole, ArrowLeft } from 'lucide-react';
 import { fireConfetti } from '@/lib/confetti';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/navigation';
-import { MessageType } from '@/utils/type';
+import { MessageType } from '@/lib/db/utils/type';
 import * as yup from 'yup'
 import { AuthInput } from './ui/AuthInput';
 import PasswordRules from './ui/PasswordRules';
 import Button from './ui/Button';
 import MessageToast from './ui/MessageToast';
-import { resetPassword } from '@/utils/action';
+import { resetPassword } from '@/lib/db/utils/action';
 
 const ResetPassword = ({ token }: { token: string }) => {
     const router = useRouter()

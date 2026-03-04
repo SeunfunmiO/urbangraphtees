@@ -6,9 +6,9 @@ import React, { useState } from 'react'
 import { AuthInput } from './ui/AuthInput';
 import { useFormik } from 'formik';
 import * as yup from 'yup'
-import { signIn } from '@/utils/action';
+import { signIn } from '@/lib/db/utils/action';
 import { useRouter } from 'next/navigation';
-import { MessageType } from '@/utils/type';
+import { MessageType } from '@/lib/db/utils/type';
 import MessageToast from './ui/MessageToast';
 import Button from './ui/Button';
 
@@ -104,7 +104,7 @@ const SignInForm = () => {
                     />
 
                     <div className="flex justify-end">
-                        <Link href="/forgot-password" 
+                        <Link href="/forgot-password"
                             className="text-[10px] font-bold uppercase text-gray-400 hover:text-blue-600 transition">
                             Forgot Password?
                         </Link>

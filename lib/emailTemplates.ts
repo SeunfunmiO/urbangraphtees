@@ -1,4 +1,4 @@
-import { ResetPasswordProps, WelcomeEmailProps } from "@/utils/type";
+import { ResetPasswordProps, WelcomeEmailProps } from "@/lib/db/utils/type";
 
 // <div style="background:#000000;padding:30px;text-align:center;" >
 //   <h1 style="color:#ffffff;margin:0;font-size:20px;letter-spacing:2px;text-transform:uppercase;" >
@@ -8,11 +8,11 @@ import { ResetPasswordProps, WelcomeEmailProps } from "@/utils/type";
 // <h1 style="margin: 0; letter-spacing: 4px; text-transform: uppercase;" > Welcome to ${ websiteName } !</h1>
 
 export async function sendWelcomeEmail({
-    fullname,
-    websiteName = 'Urbangraphtees',
-    websiteUrl = process.env.NEXT_PUBLIC_APP_URL,
+  fullname,
+  websiteName = 'Urbangraphtees',
+  websiteUrl = process.env.NEXT_PUBLIC_APP_URL,
 }: WelcomeEmailProps) {
-    return `
+  return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,10 +70,10 @@ export async function sendWelcomeEmail({
 };
 
 export function getResetEmailTemplate({
-    websiteName = "Urbangraphtees",
-    resetUrl,
+  websiteName = "Urbangraphtees",
+  resetUrl,
 }: ResetPasswordProps) {
-    return `
+  return `
 <!DOCTYPE html>
 <html>
 <head>

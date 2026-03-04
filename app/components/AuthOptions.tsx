@@ -7,14 +7,17 @@ import React from 'react'
 
 const AuthOptions = () => {
     const router = useRouter()
-    const handleSignIn = () => {
-        signIn('google')
-        router.push("/user/account")
+    const handleSignIn = async () => {
+        await signIn('google')
+
+        setTimeout(() => {
+            router.push("/user/account")
+        }, 3000)
     }
     return (
         <div className="grid grid-cols-1 gap-4">
             <button
-                onClick={()=>handleSignIn()}
+                onClick={() => handleSignIn()}
                 className="py-3 border border-gray-200 font-bold text-xs justify-center gap-1
                 uppercase tracking-widest hover:bg-gray-50 transition flex items-center"
             >
